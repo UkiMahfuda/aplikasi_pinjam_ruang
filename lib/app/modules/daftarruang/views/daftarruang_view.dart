@@ -102,101 +102,104 @@ class _DashboardRuangState extends State<DashboardRuang> {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(
-              bottom: 25,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      selectedGedung = 'Gedung A';
-                    });
-                  },
-                  style: ElevatedButton.styleFrom(
-                    primary: selectedGedung == 'Gedung A'
-                        ? Colors.black87
-                        : Color.fromRGBO(246, 247, 248, 1),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
+            margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        selectedGedung = 'Gedung A';
+                      });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: selectedGedung == 'Gedung A'
+                          ? Colors.black87
+                          : Color.fromRGBO(246, 247, 248, 1),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      fixedSize: Size(100, 35),
                     ),
-                    fixedSize: Size(100, 35),
+                    child: Text('Ged A',
+                        style: TextStyle(
+                          color: selectedGedung == 'Gedung A'
+                              ? Colors.white
+                              : Colors.black,
+                        )),
                   ),
-                  child: Text('Ged A',
-                      style: TextStyle(
-                        color: selectedGedung == 'Gedung A'
-                            ? Colors.white
-                            : Colors.black,
-                      )),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      selectedGedung = 'Gedung GSG';
-                    });
-                  },
-                  style: ElevatedButton.styleFrom(
-                    primary: selectedGedung == 'Gedung GSG'
-                        ? Colors.black87
-                        : Color.fromRGBO(246, 247, 248, 1),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
+                  SizedBox(width: 10), // Tambahkan jarak antar button
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        selectedGedung = 'Gedung GSG';
+                      });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: selectedGedung == 'Gedung GSG'
+                          ? Colors.black87
+                          : Color.fromRGBO(246, 247, 248, 1),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      fixedSize: Size(100, 35),
                     ),
-                    fixedSize: Size(100, 35),
+                    child: Text('Ged GSG',
+                        style: TextStyle(
+                          color: selectedGedung == 'Gedung GSG'
+                              ? Colors.white
+                              : Colors.black,
+                        )),
                   ),
-                  child: Text('Ged GSG',
-                      style: TextStyle(
-                        color: selectedGedung == 'Gedung GSG'
-                            ? Colors.white
-                            : Colors.black,
-                      )),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      selectedGedung = 'Gedung ICT';
-                    });
-                  },
-                  style: ElevatedButton.styleFrom(
-                    primary: selectedGedung == 'Gedung ICT'
-                        ? Colors.black87
-                        : Color.fromRGBO(246, 247, 248, 1),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
+                  SizedBox(width: 10),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        selectedGedung = 'Gedung ICT';
+                      });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: selectedGedung == 'Gedung ICT'
+                          ? Colors.black87
+                          : Color.fromRGBO(246, 247, 248, 1),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      fixedSize: Size(100, 35),
                     ),
-                    fixedSize: Size(100, 35),
+                    child: Text('Ged ICT',
+                        style: TextStyle(
+                          color: selectedGedung == 'Gedung ICT'
+                              ? Colors.white
+                              : Colors.black,
+                        )),
                   ),
-                  child: Text('Ged ICT',
-                      style: TextStyle(
-                        color: selectedGedung == 'Gedung ICT'
-                            ? Colors.white
-                            : Colors.black,
-                      )),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      selectedGedung = 'Gedung B';
-                    });
-                  },
-                  style: ElevatedButton.styleFrom(
-                    primary: selectedGedung == 'Gedung B'
-                        ? Colors.black87
-                        : Color.fromRGBO(246, 247, 248, 1),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
+                  SizedBox(width: 10),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        selectedGedung = 'Gedung B';
+                      });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: selectedGedung == 'Gedung B'
+                          ? Colors.black87
+                          : Color.fromRGBO(246, 247, 248, 1),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      fixedSize: Size(100, 35),
                     ),
-                    fixedSize: Size(100, 35),
+                    child: Text('Ged B',
+                        style: TextStyle(
+                          color: selectedGedung == 'Gedung B'
+                              ? Colors.white
+                              : Colors.black,
+                        )),
                   ),
-                  child: Text('Ged B',
-                      style: TextStyle(
-                        color: selectedGedung == 'Gedung B'
-                            ? Colors.white
-                            : Colors.black,
-                      )),
-                )
-              ],
+                ],
+              ),
             ),
           ),
           StreamBuilder<QuerySnapshot<Object?>>(
