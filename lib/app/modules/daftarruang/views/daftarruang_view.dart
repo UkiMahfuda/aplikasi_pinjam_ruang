@@ -65,7 +65,7 @@ class _DashboardRuangState extends State<DashboardRuang> {
                   width: 50,
                   child: ClipOval(
                     child: Image.network(
-                      "https://i.ibb.co/YDY6gWG/profile.jpg",
+                      "https://i.ibb.co/k34YnYr/uti.png",
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -211,40 +211,43 @@ class _DashboardRuangState extends State<DashboardRuang> {
                 return listAllDocs.length > 0
                     ? Expanded(
                         child: ListView.builder(
-                        itemCount: listAllDocs.length,
-                        itemBuilder: (context, index) => ListTile(
-                          leading: ClipRRect(
-                            borderRadius: BorderRadius.circular(5),
-                            child: Image(
-                              width: 75,
-                              image: NetworkImage(ImageRandom.getRandomImage()),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          title: Text(
-                            "${(listAllDocs[index].data() as Map<String, dynamic>)["namaruangan"]}",
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "${(listAllDocs[index].data() as Map<String, dynamic>)["gedung"]}",
+                          itemCount: listAllDocs.length,
+                          itemBuilder: (context, index) => ListTile(
+                            leading: ClipRRect(
+                              borderRadius: BorderRadius.circular(5),
+                              child: Image(
+                                width: 75,
+                                image:
+                                    NetworkImage(ImageRandom.getRandomImage()),
+                                fit: BoxFit.cover,
                               ),
-                              Text(
-                                "Kapasitas ${(listAllDocs[index].data() as Map<String, dynamic>)["kapasitas"]} Kursi",
+                            ),
+                            title: Text(
+                              "${(listAllDocs[index].data() as Map<String, dynamic>)["namaruangan"]}",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
                               ),
-                            ],
-                          ),
-                          trailing: IconButton(
-                            onPressed: () => showOption(listAllDocs[index].id),
-                            icon: Icon(Icons.more_vert),
+                            ),
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "${(listAllDocs[index].data() as Map<String, dynamic>)["gedung"]}",
+                                ),
+                                Text(
+                                  "Kapasitas ${(listAllDocs[index].data() as Map<String, dynamic>)["kapasitas"]} Kursi",
+                                ),
+                              ],
+                            ),
+                            trailing: IconButton(
+                              onPressed: () =>
+                                  showOption(listAllDocs[index].id),
+                              icon: Icon(Icons.more_vert),
+                            ),
                           ),
                         ),
-                      ))
+                      )
                     : Center(
                         child: Text("Data Kosong"),
                       );
@@ -266,7 +269,7 @@ class _DashboardRuangState extends State<DashboardRuang> {
             IconButton(
               icon: Icon(Icons.home),
               color: _selectedIndex == 0
-                  ? Color.fromRGBO(127, 116, 235, 1)
+                  ? Colors.black
                   : Color.fromRGBO(152, 155, 161, 1),
               onPressed: () {
                 _onItemTapped(0);
@@ -275,7 +278,7 @@ class _DashboardRuangState extends State<DashboardRuang> {
             IconButton(
               icon: Icon(Icons.view_list_outlined),
               color: _selectedIndex == 1
-                  ? Color.fromRGBO(127, 116, 235, 1)
+                  ? Colors.black
                   : Color.fromRGBO(152, 155, 161, 1),
               onPressed: () {
                 _onItemTapped(1);
@@ -285,7 +288,7 @@ class _DashboardRuangState extends State<DashboardRuang> {
             IconButton(
               icon: Icon(Icons.archive),
               color: _selectedIndex == 2
-                  ? Color.fromRGBO(127, 116, 235, 1)
+                  ? Colors.black
                   : Color.fromRGBO(152, 155, 161, 1),
               onPressed: () {
                 _onItemTapped(2);
@@ -294,7 +297,7 @@ class _DashboardRuangState extends State<DashboardRuang> {
             IconButton(
               icon: Icon(Icons.logout),
               color: _selectedIndex == 3
-                  ? Color.fromRGBO(127, 116, 235, 1)
+                  ? Colors.black
                   : Color.fromRGBO(152, 155, 161, 1),
               onPressed: () => cAuth.logout(),
             ),
@@ -306,7 +309,7 @@ class _DashboardRuangState extends State<DashboardRuang> {
           // Handle FloatingActionButton press
         },
         child: Icon(Icons.add),
-        backgroundColor: Color.fromRGBO(127, 116, 235, 1),
+        backgroundColor: Colors.black,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );

@@ -20,6 +20,11 @@ class DaftarruangController extends GetxController {
     return daftarRuang.where('gedung', isEqualTo: gedung).snapshots();
   }
 
+  Stream<QuerySnapshot<Object?>> streamDataByNamaRuang(String namaruangan) {
+    CollectionReference daftarRuang = firestore.collection('daftarRuang');
+    return daftarRuang.where('namaruangan', isEqualTo: namaruangan).snapshots();
+  }
+
   @override
   void onInit() {
     // TODO: implement onInit

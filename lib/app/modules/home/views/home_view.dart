@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import '../../auth/controllers/auth_controller.dart';
+import '../../daftarruang/controllers/daftarruang_controller.dart';
 import '../../daftarruang/views/daftarruang_view.dart';
 import '../controllers/home_controller.dart';
 
@@ -24,6 +26,7 @@ class DashboardHome extends StatefulWidget {
 class _DashboardHomeState extends State<DashboardHome> {
   int _selectedIndex = 0;
   final cAuth = Get.find<AuthController>();
+  // String namaruangan = 'Lab 1 GSG';
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +48,7 @@ class _DashboardHomeState extends State<DashboardHome> {
                   width: 50,
                   child: ClipOval(
                     child: Image.network(
-                      "https://i.ibb.co/YDY6gWG/profile.jpg",
+                      "https://i.ibb.co/k34YnYr/uti.png",
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -88,255 +91,349 @@ class _DashboardHomeState extends State<DashboardHome> {
             ],
           ),
           Expanded(
-              child: ListView(
-            children: [
-              SizedBox(
-                height: 140,
-                child: ListView(
-                  children: [
-                    CarouselSlider(
-                      items: [
-                        SlideItem('https://i.ibb.co/KydvbGg/uti2.jpg'),
-                        SlideItem('https://i.ibb.co/QD7DWnZ/uti1.jpg'),
-                        SlideItem('https://i.ibb.co/D41KGw4/uti3.png'),
-                      ],
-                      options: CarouselOptions(
-                        height: 140.0,
-                        enlargeCenterPage: true,
-                        autoPlay: true,
-                        aspectRatio: 16 / 9,
-                        autoPlayCurve: Curves.fastOutSlowIn,
-                        enableInfiniteScroll: true,
-                        autoPlayAnimationDuration: Duration(milliseconds: 1000),
-                        viewportFraction: 0.8,
+            child: ListView(
+              children: [
+                SizedBox(
+                  height: 140,
+                  child: ListView(
+                    children: [
+                      CarouselSlider(
+                        items: [
+                          SlideItem('https://i.ibb.co/KydvbGg/uti2.jpg'),
+                          SlideItem('https://i.ibb.co/QD7DWnZ/uti1.jpg'),
+                          SlideItem('https://i.ibb.co/D41KGw4/uti3.png'),
+                        ],
+                        options: CarouselOptions(
+                          height: 140.0,
+                          enlargeCenterPage: true,
+                          autoPlay: true,
+                          aspectRatio: 16 / 9,
+                          autoPlayCurve: Curves.fastOutSlowIn,
+                          enableInfiniteScroll: true,
+                          autoPlayAnimationDuration:
+                              Duration(milliseconds: 1000),
+                          viewportFraction: 0.8,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  margin:
+                      EdgeInsets.only(bottom: 15, left: 15, right: 15, top: 25),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Recommended Rooms',
+                        style: TextStyle(fontSize: 16),
                       ),
-                    )
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              Container(
-                margin:
-                    EdgeInsets.only(bottom: 15, left: 15, right: 15, top: 25),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Recommended Rooms',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ],
+                StreamBuilder<QuerySnapshot>(
+                  stream: Get.put(DaftarruangController())
+                      .streamDataByNamaRuang('Lab Bisnis Digital'),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.active) {
+                      var listAllDocs = snapshot.data?.docs ?? [];
+                      if (listAllDocs.length > 0) {
+                        // Ambil data pertama untuk menampilkan dalam Container
+                        var docData =
+                            listAllDocs[0].data() as Map<String, dynamic>;
+
+                        return Container(
+                          margin:
+                              EdgeInsets.only(bottom: 20, left: 15, right: 15),
+                          height: 110,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: Image(
+                                  height: 110,
+                                  width: 110,
+                                  image: NetworkImage(
+                                      'https://i.ibb.co/3y5wj0N/labdigital.jpg'),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              SizedBox(width: 10),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    "${docData["namaruangan"]}",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    "${docData["gedung"]}",
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    "Kapasitas ${docData["kapasitas"]} Kursi",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w100,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        );
+                      } else {
+                        return Center(
+                          child: Text("Data Kosong"),
+                        );
+                      }
+                    }
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  },
                 ),
-              ),
-              Container(
-                margin: EdgeInsets.only(bottom: 20, left: 15, right: 15),
-                height: 110,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Image(
-                        height: 110,
-                        width: 110,
-                        image: NetworkImage(
-                            'https://i.ibb.co/3y5wj0N/labdigital.jpg'),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          "Lab Digital",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
+                StreamBuilder<QuerySnapshot>(
+                  stream: Get.put(DaftarruangController())
+                      .streamDataByNamaRuang('Lab 1 GSG'),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.active) {
+                      var listAllDocs = snapshot.data?.docs ?? [];
+                      if (listAllDocs.length > 0) {
+                        // Ambil data pertama untuk menampilkan dalam Container
+                        var docData =
+                            listAllDocs[0].data() as Map<String, dynamic>;
+
+                        return Container(
+                          margin:
+                              EdgeInsets.only(bottom: 20, left: 15, right: 15),
+                          height: 110,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: Image(
+                                  height: 110,
+                                  width: 110,
+                                  image: NetworkImage(
+                                      'https://i.ibb.co/1Mb4hfC/lab1gsg.jpg'),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              SizedBox(width: 10),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    "${docData["namaruangan"]}",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    "${docData["gedung"]}",
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    "Kapasitas ${docData["kapasitas"]} Kursi",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w100,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          "Ged A",
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          "Kapasitas 40 Kursi",
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w100,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        );
+                      } else {
+                        return Center(
+                          child: Text("Data Kosong"),
+                        );
+                      }
+                    }
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  },
                 ),
-              ),
-              Container(
-                margin: EdgeInsets.only(bottom: 20, left: 15, right: 15),
-                height: 110,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Image(
-                        height: 110,
-                        width: 110,
-                        image: NetworkImage(
-                            'https://i.ibb.co/1Mb4hfC/lab1gsg.jpg'),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          "Lab 1 GSG",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
+                StreamBuilder<QuerySnapshot>(
+                  stream: Get.put(DaftarruangController())
+                      .streamDataByNamaRuang('Lab 1 ICT'),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.active) {
+                      var listAllDocs = snapshot.data?.docs ?? [];
+                      if (listAllDocs.length > 0) {
+                        // Ambil data pertama untuk menampilkan dalam Container
+                        var docData =
+                            listAllDocs[0].data() as Map<String, dynamic>;
+
+                        return Container(
+                          margin:
+                              EdgeInsets.only(bottom: 20, left: 15, right: 15),
+                          height: 110,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: Image(
+                                  height: 110,
+                                  width: 110,
+                                  image: NetworkImage(
+                                      'https://i.ibb.co/vqzxHct/labict.jpg'),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              SizedBox(width: 10),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    "${docData["namaruangan"]}",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    "${docData["gedung"]}",
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    "Kapasitas ${docData["kapasitas"]} Kursi",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w100,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          "Ged GSG",
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          "Kapasitas 40 Kursi",
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w100,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        );
+                      } else {
+                        return Center(
+                          child: Text("Data Kosong"),
+                        );
+                      }
+                    }
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  },
                 ),
-              ),
-              Container(
-                margin: EdgeInsets.only(bottom: 20, left: 15, right: 15),
-                height: 110,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Image(
-                        height: 110,
-                        width: 110,
-                        image:
-                            NetworkImage('https://i.ibb.co/TH3RTSR/302b.jpg'),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          "Ruang 302 B",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
+                StreamBuilder<QuerySnapshot>(
+                  stream: Get.put(DaftarruangController())
+                      .streamDataByNamaRuang('Ruang 201 B'),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.active) {
+                      var listAllDocs = snapshot.data?.docs ?? [];
+                      if (listAllDocs.length > 0) {
+                        // Ambil data pertama untuk menampilkan dalam Container
+                        var docData =
+                            listAllDocs[0].data() as Map<String, dynamic>;
+
+                        return Container(
+                          margin:
+                              EdgeInsets.only(bottom: 20, left: 15, right: 15),
+                          height: 110,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: Image(
+                                  height: 110,
+                                  width: 110,
+                                  image: NetworkImage(
+                                      'https://i.ibb.co/TH3RTSR/302b.jpg'),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              SizedBox(width: 10),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    "${docData["namaruangan"]}",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    "${docData["gedung"]}",
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    "Kapasitas ${docData["kapasitas"]} Kursi",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w100,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          "Ged B",
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          "Kapasitas 50 Kursi",
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w100,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        );
+                      } else {
+                        return Center(
+                          child: Text("Data Kosong"),
+                        );
+                      }
+                    }
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  },
                 ),
-              ),
-              Container(
-                margin: EdgeInsets.only(bottom: 20, left: 15, right: 15),
-                height: 110,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Image(
-                        height: 110,
-                        width: 110,
-                        image:
-                            NetworkImage('https://i.ibb.co/vqzxHct/labict.jpg'),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          "Lab 1 ICT",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          "Ged ICT",
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          "Kapasitas 50 Kursi",
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w100,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ))
+              ],
+            ),
+          )
         ],
       ),
       bottomNavigationBar: BottomAppBar(
@@ -349,7 +446,7 @@ class _DashboardHomeState extends State<DashboardHome> {
             IconButton(
               icon: Icon(Icons.home),
               color: _selectedIndex == 0
-                  ? Color.fromRGBO(127, 116, 235, 1)
+                  ? Colors.black
                   : Color.fromRGBO(152, 155, 161, 1),
               onPressed: () {
                 _onItemTapped(0);
@@ -358,7 +455,7 @@ class _DashboardHomeState extends State<DashboardHome> {
             IconButton(
               icon: Icon(Icons.view_list_outlined),
               color: _selectedIndex == 1
-                  ? Color.fromRGBO(127, 116, 235, 1)
+                  ? Colors.black
                   : Color.fromRGBO(152, 155, 161, 1),
               onPressed: () {
                 _onItemTapped(1);
@@ -368,7 +465,7 @@ class _DashboardHomeState extends State<DashboardHome> {
             IconButton(
               icon: Icon(Icons.archive),
               color: _selectedIndex == 2
-                  ? Color.fromRGBO(127, 116, 235, 1)
+                  ? Colors.black
                   : Color.fromRGBO(152, 155, 161, 1),
               onPressed: () {
                 _onItemTapped(2);
@@ -377,7 +474,7 @@ class _DashboardHomeState extends State<DashboardHome> {
             IconButton(
               icon: Icon(Icons.logout),
               color: _selectedIndex == 3
-                  ? Color.fromRGBO(127, 116, 235, 1)
+                  ? Colors.black
                   : Color.fromRGBO(152, 155, 161, 1),
               onPressed: () => cAuth.logout(),
             ),
@@ -389,7 +486,7 @@ class _DashboardHomeState extends State<DashboardHome> {
           // Handle FloatingActionButton press
         },
         child: Icon(Icons.add),
-        backgroundColor: Color.fromRGBO(127, 116, 235, 1),
+        backgroundColor: Colors.black,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
@@ -408,6 +505,24 @@ class _DashboardHomeState extends State<DashboardHome> {
         MaterialPageRoute(builder: (context) => DaftarruangView()),
       );
     }
+  }
+
+  void showOption(id) async {
+    var result = await Get.dialog(
+      SimpleDialog(
+        children: [
+          ListTile(
+            onTap: () {},
+            title: Text('Pinjam'),
+          ),
+          ListTile(
+            onTap: () => Get.back(),
+            title: Text('Close'),
+          ),
+        ],
+      ),
+      barrierDismissible: false,
+    );
   }
 }
 
