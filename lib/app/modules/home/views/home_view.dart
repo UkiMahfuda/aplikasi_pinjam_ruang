@@ -7,7 +7,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import '../../auth/controllers/auth_controller.dart';
 import '../../daftarruang/controllers/daftarruang_controller.dart';
 import '../../daftarruang/views/daftarruang_view.dart';
-import '../../deskripsiruang/views/deskripsiruang_view.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -58,43 +57,43 @@ class _DashboardHomeState extends State<DashboardHome> {
               ],
             ),
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                margin: EdgeInsets.only(bottom: 25, left: 15, right: 15),
-                height: 50,
-                decoration: BoxDecoration(
-                  color: Color.fromRGBO(246, 247, 248, 1),
-                  border:
-                      Border.all(color: const Color.fromRGBO(246, 247, 248, 1)),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Row(
+          Expanded(
+            child: ListView(
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Icon(
-                        Icons.search,
-                        color: Color.fromRGBO(120, 124, 1132, 1),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 25, left: 15, right: 15),
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: Color.fromRGBO(246, 247, 248, 1),
+                        border: Border.all(
+                            color: const Color.fromRGBO(246, 247, 248, 1)),
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                    ),
-                    Expanded(
-                      child: TextField(
-                        decoration: InputDecoration(
-                          hintText: 'Search Room',
-                          border: InputBorder.none,
-                        ),
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Icon(
+                              Icons.search,
+                              color: Color.fromRGBO(120, 124, 1132, 1),
+                            ),
+                          ),
+                          Expanded(
+                            child: TextField(
+                              decoration: InputDecoration(
+                                hintText: 'Search Room',
+                                border: InputBorder.none,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
                 ),
-              ),
-            ],
-          ),
-          Expanded(
-            child: ListView(
-              children: [
                 SizedBox(
                   height: 140,
                   child: ListView(

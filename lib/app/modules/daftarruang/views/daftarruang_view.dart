@@ -4,7 +4,6 @@ import 'package:flutter_pinjam_ruang/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'dart:math';
 import '../../auth/controllers/auth_controller.dart';
-import '../../deskripsiruang/views/deskripsiruang_view.dart';
 import '../../home/views/home_view.dart';
 import '../controllers/daftarruang_controller.dart';
 
