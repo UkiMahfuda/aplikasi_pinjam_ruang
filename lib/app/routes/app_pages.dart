@@ -4,6 +4,8 @@ import '../modules/auth/bindings/auth_binding.dart';
 import '../modules/auth/views/auth_view.dart';
 import '../modules/daftarruang/bindings/daftarruang_binding.dart';
 import '../modules/daftarruang/views/daftarruang_view.dart';
+import '../modules/deskripsiruang/bindings/deskripsiruang_binding.dart';
+import '../modules/deskripsiruang/views/deskripsiruang_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
@@ -43,6 +45,11 @@ class AppPages {
       name: _Paths.DAFTARRUANG,
       page: () => DaftarruangView(),
       binding: DaftarruangBinding(),
+    ),
+    GetPage(
+      name: _Paths.DESKRIPSIRUANG,
+      page: () => DeskripsiruangView(),
+      binding: DeskripsiruangBinding(),
     ),
   ];
 }

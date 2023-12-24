@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_pinjam_ruang/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'dart:math';
 import '../../auth/controllers/auth_controller.dart';
+import '../../deskripsiruang/views/deskripsiruang_view.dart';
 import '../../home/views/home_view.dart';
 import '../controllers/daftarruang_controller.dart';
 
@@ -52,9 +54,9 @@ class _DashboardRuangState extends State<DashboardRuang> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
-            margin: EdgeInsets.only(top: 20, bottom: 15),
+            margin: EdgeInsets.only(top: 20, bottom: 15, right: 50, left: 50),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   'Daftar Ruangan',
@@ -102,6 +104,7 @@ class _DashboardRuangState extends State<DashboardRuang> {
             ),
           ),
           Container(
+            padding: EdgeInsets.only(top: 5, bottom: 5),
             margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
@@ -213,6 +216,20 @@ class _DashboardRuangState extends State<DashboardRuang> {
                         child: ListView.builder(
                           itemCount: listAllDocs.length,
                           itemBuilder: (context, index) => ListTile(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                context,
+                                Routes.DESKRIPSIRUANG,
+                                arguments: {
+                                  'id': listAllDocs[index].id,
+                                  'namaruangan': listAllDocs[index]
+                                      ["namaruangan"],
+                                  'gedung': listAllDocs[index]["gedung"],
+                                  'kapasitas': listAllDocs[index]["kapasitas"],
+                                  'deskripsi': listAllDocs[index]["deskripsi"],
+                                },
+                              );
+                            },
                             leading: ClipRRect(
                               borderRadius: BorderRadius.circular(5),
                               child: Image(
@@ -329,6 +346,19 @@ class _DashboardRuangState extends State<DashboardRuang> {
       );
     }
   }
+
+  // void handleDaftarRuangClick(QueryDocumentSnapshot ruanganData) {
+  //   Navigator.pushNamed(
+  //     context,
+  //     _Paths.DESKRIPSIRUANG,
+  //     arguments: {
+  //       'id': ruanganData.id,
+  //       'namaRuang': ruanganData["namaruangan"],
+  //       'gedung': ruanganData["gedung"],
+  //       'kapasitas': ruanganData["kapasitas"],
+  //     },
+  //   );
+  // }
 
   void showOption(id) async {
     var result = await Get.dialog(

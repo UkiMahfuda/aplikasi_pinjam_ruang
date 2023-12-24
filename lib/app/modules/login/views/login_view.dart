@@ -107,7 +107,7 @@ class LoginView extends GetView<LoginController> {
                                         height: 15,
                                       ),
                                       TextField(
-                                        // obscureText: true,
+                                        obscureText: true,
                                         controller: controller.cPass,
                                         decoration: InputDecoration(
                                           contentPadding: EdgeInsets.symmetric(

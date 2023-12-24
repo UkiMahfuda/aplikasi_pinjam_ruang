@@ -1,11 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_pinjam_ruang/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import '../../auth/controllers/auth_controller.dart';
 import '../../daftarruang/controllers/daftarruang_controller.dart';
 import '../../daftarruang/views/daftarruang_view.dart';
+import '../../deskripsiruang/views/deskripsiruang_view.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -35,9 +37,9 @@ class _DashboardHomeState extends State<DashboardHome> {
       body: Column(
         children: [
           Container(
-            margin: EdgeInsets.only(top: 20, bottom: 15),
+            margin: EdgeInsets.only(top: 20, bottom: 15, right: 50, left: 50),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   'Dashboard',
@@ -142,57 +144,72 @@ class _DashboardHomeState extends State<DashboardHome> {
                         var docData =
                             listAllDocs[0].data() as Map<String, dynamic>;
 
-                        return Container(
-                          margin:
-                              EdgeInsets.only(bottom: 20, left: 15, right: 15),
-                          height: 110,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: Image(
-                                  height: 110,
-                                  width: 110,
-                                  image: NetworkImage(
-                                      'https://i.ibb.co/3y5wj0N/labdigital.jpg'),
-                                  fit: BoxFit.cover,
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              Routes.DESKRIPSIRUANG,
+                              arguments: {
+                                'id': listAllDocs[0].id,
+                                'namaruangan': docData["namaruangan"],
+                                'gedung': docData["gedung"],
+                                'kapasitas': docData["kapasitas"],
+                                'deskripsi': docData["deskripsi"],
+                              },
+                            );
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(
+                                bottom: 20, left: 15, right: 15),
+                            height: 110,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Image(
+                                    height: 110,
+                                    width: 110,
+                                    image: NetworkImage(
+                                        'https://i.ibb.co/3y5wj0N/labdigital.jpg'),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
-                              ),
-                              SizedBox(width: 10),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    "${docData["namaruangan"]}",
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w600,
+                                SizedBox(width: 10),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 5,
                                     ),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    "${docData["gedung"]}",
-                                    style: TextStyle(fontSize: 16),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    "Kapasitas ${docData["kapasitas"]} Kursi",
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w100,
+                                    Text(
+                                      "${docData["namaruangan"]}",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text(
+                                      "${docData["gedung"]}",
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text(
+                                      "Kapasitas ${docData["kapasitas"]} Kursi",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w100,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         );
                       } else {
@@ -217,57 +234,72 @@ class _DashboardHomeState extends State<DashboardHome> {
                         var docData =
                             listAllDocs[0].data() as Map<String, dynamic>;
 
-                        return Container(
-                          margin:
-                              EdgeInsets.only(bottom: 20, left: 15, right: 15),
-                          height: 110,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: Image(
-                                  height: 110,
-                                  width: 110,
-                                  image: NetworkImage(
-                                      'https://i.ibb.co/1Mb4hfC/lab1gsg.jpg'),
-                                  fit: BoxFit.cover,
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              Routes.DESKRIPSIRUANG,
+                              arguments: {
+                                'id': listAllDocs[0].id,
+                                'namaruangan': docData["namaruangan"],
+                                'gedung': docData["gedung"],
+                                'kapasitas': docData["kapasitas"],
+                                'deskripsi': docData["deskripsi"],
+                              },
+                            );
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(
+                                bottom: 20, left: 15, right: 15),
+                            height: 110,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Image(
+                                    height: 110,
+                                    width: 110,
+                                    image: NetworkImage(
+                                        'https://i.ibb.co/1Mb4hfC/lab1gsg.jpg'),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
-                              ),
-                              SizedBox(width: 10),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    "${docData["namaruangan"]}",
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w600,
+                                SizedBox(width: 10),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 5,
                                     ),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    "${docData["gedung"]}",
-                                    style: TextStyle(fontSize: 16),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    "Kapasitas ${docData["kapasitas"]} Kursi",
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w100,
+                                    Text(
+                                      "${docData["namaruangan"]}",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text(
+                                      "${docData["gedung"]}",
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text(
+                                      "Kapasitas ${docData["kapasitas"]} Kursi",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w100,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         );
                       } else {
@@ -277,7 +309,9 @@ class _DashboardHomeState extends State<DashboardHome> {
                       }
                     }
                     return Center(
-                      child: CircularProgressIndicator(),
+                      child: SizedBox(
+                        width: 5,
+                      ),
                     );
                   },
                 ),
@@ -292,57 +326,72 @@ class _DashboardHomeState extends State<DashboardHome> {
                         var docData =
                             listAllDocs[0].data() as Map<String, dynamic>;
 
-                        return Container(
-                          margin:
-                              EdgeInsets.only(bottom: 20, left: 15, right: 15),
-                          height: 110,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: Image(
-                                  height: 110,
-                                  width: 110,
-                                  image: NetworkImage(
-                                      'https://i.ibb.co/vqzxHct/labict.jpg'),
-                                  fit: BoxFit.cover,
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              Routes.DESKRIPSIRUANG,
+                              arguments: {
+                                'id': listAllDocs[0].id,
+                                'namaruangan': docData["namaruangan"],
+                                'gedung': docData["gedung"],
+                                'kapasitas': docData["kapasitas"],
+                                'deskripsi': docData["deskripsi"],
+                              },
+                            );
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(
+                                bottom: 20, left: 15, right: 15),
+                            height: 110,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Image(
+                                    height: 110,
+                                    width: 110,
+                                    image: NetworkImage(
+                                        'https://i.ibb.co/vqzxHct/labict.jpg'),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
-                              ),
-                              SizedBox(width: 10),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    "${docData["namaruangan"]}",
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w600,
+                                SizedBox(width: 10),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 5,
                                     ),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    "${docData["gedung"]}",
-                                    style: TextStyle(fontSize: 16),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    "Kapasitas ${docData["kapasitas"]} Kursi",
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w100,
+                                    Text(
+                                      "${docData["namaruangan"]}",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text(
+                                      "${docData["gedung"]}",
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text(
+                                      "Kapasitas ${docData["kapasitas"]} Kursi",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w100,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         );
                       } else {
@@ -352,7 +401,9 @@ class _DashboardHomeState extends State<DashboardHome> {
                       }
                     }
                     return Center(
-                      child: CircularProgressIndicator(),
+                      child: SizedBox(
+                        width: 5,
+                      ),
                     );
                   },
                 ),
@@ -367,57 +418,72 @@ class _DashboardHomeState extends State<DashboardHome> {
                         var docData =
                             listAllDocs[0].data() as Map<String, dynamic>;
 
-                        return Container(
-                          margin:
-                              EdgeInsets.only(bottom: 20, left: 15, right: 15),
-                          height: 110,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: Image(
-                                  height: 110,
-                                  width: 110,
-                                  image: NetworkImage(
-                                      'https://i.ibb.co/TH3RTSR/302b.jpg'),
-                                  fit: BoxFit.cover,
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              Routes.DESKRIPSIRUANG,
+                              arguments: {
+                                'id': listAllDocs[0].id,
+                                'namaruangan': docData["namaruangan"],
+                                'gedung': docData["gedung"],
+                                'kapasitas': docData["kapasitas"],
+                                'deskripsi': docData["deskripsi"],
+                              },
+                            );
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(
+                                bottom: 20, left: 15, right: 15),
+                            height: 110,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Image(
+                                    height: 110,
+                                    width: 110,
+                                    image: NetworkImage(
+                                        'https://i.ibb.co/TH3RTSR/302b.jpg'),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
-                              ),
-                              SizedBox(width: 10),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    "${docData["namaruangan"]}",
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w600,
+                                SizedBox(width: 10),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 5,
                                     ),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    "${docData["gedung"]}",
-                                    style: TextStyle(fontSize: 16),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    "Kapasitas ${docData["kapasitas"]} Kursi",
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w100,
+                                    Text(
+                                      "${docData["namaruangan"]}",
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text(
+                                      "${docData["gedung"]}",
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text(
+                                      "Kapasitas ${docData["kapasitas"]} Kursi",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w100,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         );
                       } else {
@@ -427,7 +493,9 @@ class _DashboardHomeState extends State<DashboardHome> {
                       }
                     }
                     return Center(
-                      child: CircularProgressIndicator(),
+                      child: SizedBox(
+                        width: 5,
+                      ),
                     );
                   },
                 ),

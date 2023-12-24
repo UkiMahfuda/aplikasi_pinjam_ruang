@@ -7,8 +7,7 @@ class DaftarruangController extends GetxController {
   late TextEditingController cNamaruangan;
   late TextEditingController cGedung;
   late TextEditingController cKapasitas;
-  late TextEditingController cTglpinjam;
-  late TextEditingController cTglkembali;
+  late TextEditingController cDeskripsi;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   Future<QuerySnapshot<Object?>> GetData() async {
     CollectionReference daftarRuang = firestore.collection('daftarRuang');
@@ -31,8 +30,7 @@ class DaftarruangController extends GetxController {
     cNamaruangan = TextEditingController();
     cGedung = TextEditingController();
     cKapasitas = TextEditingController();
-    cTglpinjam = TextEditingController();
-    cTglkembali = TextEditingController();
+    cDeskripsi = TextEditingController();
     super.onInit();
   }
 
@@ -42,8 +40,7 @@ class DaftarruangController extends GetxController {
     cNamaruangan.dispose();
     cGedung.dispose();
     cKapasitas.dispose();
-    cTglpinjam.dispose();
-    cTglkembali.dispose();
+    cDeskripsi.dispose();
     super.onClose();
   }
 }
