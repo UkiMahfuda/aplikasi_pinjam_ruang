@@ -12,6 +12,8 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/signup/bindings/signup_binding.dart';
 import '../modules/signup/views/signup_view.dart';
+import '../modules/tambahruang/bindings/tambahruang_binding.dart';
+import '../modules/tambahruang/views/tambahruang_view.dart';
 
 part 'app_routes.dart';
 
@@ -50,6 +52,11 @@ class AppPages {
       name: _Paths.DESKRIPSIRUANG,
       page: () => DeskripsiruangView(),
       binding: DeskripsiruangBinding(),
+    ),
+    GetPage(
+      name: _Paths.TAMBAHRUANG,
+      page: () => TambahruangView(),
+      binding: TambahruangBinding(),
     ),
   ];
 }

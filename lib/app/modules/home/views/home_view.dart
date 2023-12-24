@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_pinjam_ruang/app/modules/tambahruang/views/list_peminjaman_view.dart';
 import 'package:flutter_pinjam_ruang/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:carousel_slider/carousel_options.dart';
@@ -8,6 +9,7 @@ import '../../auth/controllers/auth_controller.dart';
 import '../../daftarruang/controllers/daftarruang_controller.dart';
 import '../../daftarruang/views/daftarruang_view.dart';
 import '../controllers/home_controller.dart';
+import '../../tambahruang/views/tambahruang_view.dart';
 
 class HomeView extends GetView<HomeController> {
   final cAuth = Get.find<AuthController>();
@@ -535,7 +537,10 @@ class _DashboardHomeState extends State<DashboardHome> {
                   ? Colors.black
                   : Color.fromRGBO(152, 155, 161, 1),
               onPressed: () {
-                _onItemTapped(2);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ListPeminjamanView()),
+                );
               },
             ),
             IconButton(
@@ -551,9 +556,14 @@ class _DashboardHomeState extends State<DashboardHome> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // Handle FloatingActionButton press
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => TambahruangView()),
+          );
         },
         child: Icon(Icons.add),
-        backgroundColor: Colors.black,
+        backgroundColor: Color.fromARGB(
+            255, 255, 255, 255), // Ubah warna sesuai keinginan Anda
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
