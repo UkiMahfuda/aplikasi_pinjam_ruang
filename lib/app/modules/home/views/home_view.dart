@@ -59,43 +59,43 @@ class _DashboardHomeState extends State<DashboardHome> {
               ],
             ),
           ),
-          Expanded(
-            child: ListView(
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                margin: EdgeInsets.only(bottom: 25, left: 15, right: 15),
+                height: 50,
+                decoration: BoxDecoration(
+                  color: Color.fromRGBO(246, 247, 248, 1),
+                  border:
+                      Border.all(color: const Color.fromRGBO(246, 247, 248, 1)),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Row(
                   children: [
-                    Container(
-                      margin: EdgeInsets.only(bottom: 25, left: 15, right: 15),
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: Color.fromRGBO(246, 247, 248, 1),
-                        border: Border.all(
-                            color: const Color.fromRGBO(246, 247, 248, 1)),
-                        borderRadius: BorderRadius.circular(10),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(
+                        Icons.search,
+                        color: Color.fromRGBO(120, 124, 1132, 1),
                       ),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Icon(
-                              Icons.search,
-                              color: Color.fromRGBO(120, 124, 1132, 1),
-                            ),
-                          ),
-                          Expanded(
-                            child: TextField(
-                              decoration: InputDecoration(
-                                hintText: 'Search Room',
-                                border: InputBorder.none,
-                              ),
-                            ),
-                          ),
-                        ],
+                    ),
+                    Expanded(
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: 'Cari Ruangan',
+                          border: InputBorder.none,
+                        ),
                       ),
                     ),
                   ],
                 ),
+              ),
+            ],
+          ),
+          Expanded(
+            child: ListView(
+              children: [
                 SizedBox(
                   height: 140,
                   child: ListView(
@@ -128,7 +128,7 @@ class _DashboardHomeState extends State<DashboardHome> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        'Recommended Rooms',
+                        'Rekomendasi Ruangan',
                         style: TextStyle(fontSize: 16),
                       ),
                     ],
@@ -537,10 +537,7 @@ class _DashboardHomeState extends State<DashboardHome> {
                   ? Colors.black
                   : Color.fromRGBO(152, 155, 161, 1),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ListPeminjamanView()),
-                );
+                _onItemTapped(2);
               },
             ),
             IconButton(
@@ -555,15 +552,13 @@ class _DashboardHomeState extends State<DashboardHome> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Handle FloatingActionButton press
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => TambahruangView()),
           );
         },
         child: Icon(Icons.add),
-        backgroundColor: Color.fromARGB(
-            255, 255, 255, 255), // Ubah warna sesuai keinginan Anda
+        backgroundColor: Colors.black, // Ubah warna sesuai keinginan Anda
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
@@ -581,6 +576,10 @@ class _DashboardHomeState extends State<DashboardHome> {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => DaftarruangView()),
       );
+    } else if (index == 2) {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => ListPeminjamanView()),
+      );
     }
   }
 
@@ -589,7 +588,12 @@ class _DashboardHomeState extends State<DashboardHome> {
       SimpleDialog(
         children: [
           ListTile(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => TambahruangView()),
+              );
+            },
             title: Text('Pinjam'),
           ),
           ListTile(

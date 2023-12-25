@@ -23,3 +23,10 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/images/gambarlogin.png
+  fonts:
+    - family: SakkalR
+      fonts:
+        - asset: assets/fonts/SakkalR.ttf

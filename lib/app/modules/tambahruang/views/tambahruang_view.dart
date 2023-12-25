@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pinjam_ruang/app/modules/tambahruang/controllers/tambahruang_controller.dart';
 import 'package:get/get.dart';
 import '../controllers/tambahruang_controller.dart';
 
@@ -24,6 +23,17 @@ class TambahruangView extends StatelessWidget {
               decoration: InputDecoration(labelText: "Nama"),
             ),
             TextFormField(
+              controller: controller.cNpm,
+              autocorrect: false,
+              textInputAction: TextInputAction.next,
+              decoration: InputDecoration(labelText: "NPM"),
+            ),
+            TextFormField(
+              controller: controller.cNamaRuang,
+              textInputAction: TextInputAction.next,
+              decoration: InputDecoration(labelText: "Nama Ruang"),
+            ),
+            TextFormField(
               controller: controller.cNomorHandphone,
               autocorrect: false,
               textInputAction: TextInputAction.next,
@@ -33,11 +43,6 @@ class TambahruangView extends StatelessWidget {
               controller: controller.cKegiatan,
               textInputAction: TextInputAction.next,
               decoration: InputDecoration(labelText: "Kegiatan"),
-            ),
-            TextFormField(
-              controller: controller.cNamaRuang,
-              textInputAction: TextInputAction.next,
-              decoration: InputDecoration(labelText: "Nama Ruang"),
             ),
             TextFormField(
               onTap: () async {

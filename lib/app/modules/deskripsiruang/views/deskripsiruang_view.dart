@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../tambahruang/views/tambahruang_view.dart';
+
 class ImageRandom {
   static String getRandomImage() {
     List<String> imageUrls = [
@@ -119,24 +121,30 @@ class DeskripsiruangView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
-                  onPressed: () {},
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 15, bottom: 15, left: 10, right: 10),
-                    child: Text(
-                      'Pinjam Ruang Ini',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14.0,
-                      ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => TambahruangView()),
+                  );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                      top: 15, bottom: 15, left: 10, right: 10),
+                  child: Text(
+                    'Pinjam Ruang Ini',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 14.0,
                     ),
                   ),
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.black,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                  )),
+                ),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.black,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
