@@ -14,14 +14,32 @@ class DaftarruangController extends GetxController {
     return daftarRuang.get();
   }
 
+//Fungsi menampilkan data ruangan berdasarkan gedung
   Stream<QuerySnapshot<Object?>> streamDataByGedung(String gedung) {
     CollectionReference daftarRuang = firestore.collection('daftarRuang');
     return daftarRuang.where('gedung', isEqualTo: gedung).snapshots();
   }
 
+//Fungsi menampilkan data ruangan berdasarkan nama ruangan
   Stream<QuerySnapshot<Object?>> streamDataByNamaRuang(String namaruangan) {
     CollectionReference daftarRuang = firestore.collection('daftarRuang');
     return daftarRuang.where('namaruangan', isEqualTo: namaruangan).snapshots();
+  }
+
+//Fungsi menampilkan data namaruangan
+  Future<List<String>> getNamaRuang() async {
+    List<String> ruanganList = [];
+    try {
+      QuerySnapshot<Object?> querySnapshot =
+          await firestore.collection('daftarRuang').get();
+      querySnapshot.docs.forEach((doc) {
+        String ruangan = doc['namaruangan'];
+        ruanganList.add(ruangan);
+      });
+    } catch (e) {
+      print('Data Gagal Di tampilkan');
+    }
+    return ruanganList;
   }
 
   @override

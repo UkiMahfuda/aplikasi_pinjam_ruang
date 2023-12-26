@@ -51,9 +51,8 @@ class LoginView extends GetView<LoginController> {
               child: Text(
                 'Universitas Teknokrat Indonesia',
                 style: TextStyle(
-                  fontFamily:
-                      'SakkalR', // Nama font yang telah ditentukan di pubspec.yaml
-                  fontSize: 37,
+                  fontFamily: 'SakkalR',
+                  fontSize: 30,
                   foreground: Paint()
                     ..style = PaintingStyle.stroke
                     ..strokeWidth = 0.8
@@ -69,31 +68,52 @@ class LoginView extends GetView<LoginController> {
               child: Text(
                 'Peminjaman Ruangan',
                 style: TextStyle(
-                  fontFamily:
-                      'SakkalR', // Nama font yang telah ditentukan di pubspec.yaml
-                  fontSize: 30,
+                  fontFamily: 'SakkalR',
+                  fontSize: 27,
                 ),
                 textAlign: TextAlign.center,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 0),
-              child: Text(
-                'Login',
-                style: TextStyle(
-                  fontFamily:
-                      'SakkalR', // Nama font yang telah ditentukan di pubspec.yaml
-                  fontSize: 30,
-                ),
-                textAlign: TextAlign.center,
+            Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 0),
+                    child: Text(
+                      'Login',
+                      style: TextStyle(
+                          fontFamily: 'SakkalR',
+                          fontSize: 27,
+                          color: Colors.blue),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 0),
+                    child: TextButton(
+                      onPressed: () => Get.toNamed(Routes.SIGNUP),
+                      child: Text(
+                        "Sign Up",
+                        style: TextStyle(
+                            fontFamily: 'SakkalR',
+                            fontSize: 25,
+                            color: Colors.black),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-
-            // Input Email
-// Input Email
+            SizedBox(
+              height: 10,
+            ),
             Container(
               padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-              margin: EdgeInsets.only(right: 15, left: 15),
+              margin: EdgeInsets.only(right: 35, left: 35),
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey),
                 borderRadius: BorderRadius.circular(10),
@@ -110,7 +130,7 @@ class LoginView extends GetView<LoginController> {
             // Input Password
             Container(
               padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-              margin: EdgeInsets.only(top: 10, right: 15, left: 15),
+              margin: EdgeInsets.only(top: 10, right: 35, left: 35),
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey),
                 borderRadius: BorderRadius.circular(10),
@@ -126,20 +146,20 @@ class LoginView extends GetView<LoginController> {
             ),
 
             // Tombol Login
-            SizedBox(height: 10),
+            SizedBox(height: 25),
             Container(
               margin: EdgeInsets.only(
-                  right: 30, left: 30), // Tambahkan margin sesuai kebutuhan
+                right: 50,
+                left: 50,
+              ), // Tambahkan margin sesuai kebutuhan
               child: ElevatedButton(
                 onPressed: () =>
                     cAuth.login(controller.cEmail.text, controller.cPass.text),
                 child: Text("Login"),
                 style: ElevatedButton.styleFrom(
-                  primary: Color.fromARGB(
-                      255, 255, 209, 81), // Warna latar belakang tombol
+                  primary: Colors.blue[700], // Warna latar belakang tombol
                   onPrimary: Colors.white, // Warna teks tombol
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 20), // Padding tombol
+                  padding: EdgeInsets.only(top: 20, bottom: 20),
                   shape: RoundedRectangleBorder(
                     borderRadius:
                         BorderRadius.circular(10), // Bentuk sudut tombol
@@ -149,9 +169,9 @@ class LoginView extends GetView<LoginController> {
             ),
 
             // Tombol Reset Password
-            SizedBox(height: 10),
+            SizedBox(height: 20),
             Align(
-              alignment: Alignment.centerRight,
+              alignment: Alignment.center,
               child: Container(
                 margin: EdgeInsets.only(right: 20),
                 child: TextButton(
@@ -168,22 +188,10 @@ class LoginView extends GetView<LoginController> {
                 ),
               ),
             ),
-
-            // Tombol Daftar
-            SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Belum Punya Akun ?"),
-                TextButton(
-                  onPressed: () => Get.toNamed(Routes.SIGNUP),
-                  child: Text("Daftar Disini"),
-                ),
-              ],
+            SizedBox(
+              height: 20,
             ),
-// ...
 
-// Kredit dengan Logo Kecil
             Container(
               margin: EdgeInsets.only(top: 5),
               child: Column(

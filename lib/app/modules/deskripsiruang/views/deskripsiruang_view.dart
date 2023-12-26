@@ -63,7 +63,7 @@ class DeskripsiruangView extends StatelessWidget {
                           Get.back();
                         },
                         color: Colors.white,
-                        iconSize: 30,
+                        iconSize: 25,
                       ),
                     ),
                   ),

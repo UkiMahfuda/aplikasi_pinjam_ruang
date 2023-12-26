@@ -265,18 +265,19 @@ class _DashboardRuangState extends State<DashboardRuang> {
                                           margin: EdgeInsets.only(
                                               bottom: 35, right: 5, left: 5),
                                           decoration: BoxDecoration(
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: const Color.fromARGB(
-                                                    179, 236, 236, 236),
-                                                blurRadius: 10.0,
-                                                offset: Offset(0, 3),
-                                                spreadRadius: 2.0,
-                                              ),
-                                            ],
                                             color: Colors.white,
                                             borderRadius:
                                                 BorderRadius.circular(20),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Color.fromARGB(
+                                                        255, 241, 241, 241)
+                                                    .withOpacity(0.8),
+                                                spreadRadius: 5,
+                                                blurRadius: 7,
+                                                offset: Offset(0, 3),
+                                              ),
+                                            ],
                                           ),
                                           child: Column(children: [
                                             ClipRRect(

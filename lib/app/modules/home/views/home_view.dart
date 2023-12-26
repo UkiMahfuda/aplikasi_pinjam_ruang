@@ -160,6 +160,19 @@ class _DashboardHomeState extends State<DashboardHome> {
                             );
                           },
                           child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Color.fromARGB(255, 241, 241, 241)
+                                      .withOpacity(0.8),
+                                  spreadRadius: 5,
+                                  blurRadius: 7,
+                                  offset: Offset(0, 3),
+                                ),
+                              ],
+                            ),
                             margin: EdgeInsets.only(
                                 bottom: 20, left: 15, right: 15),
                             height: 110,
@@ -250,6 +263,19 @@ class _DashboardHomeState extends State<DashboardHome> {
                             );
                           },
                           child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Color.fromARGB(255, 241, 241, 241)
+                                      .withOpacity(0.8),
+                                  spreadRadius: 5,
+                                  blurRadius: 7,
+                                  offset: Offset(0, 3),
+                                ),
+                              ],
+                            ),
                             margin: EdgeInsets.only(
                                 bottom: 20, left: 15, right: 15),
                             height: 110,
@@ -342,6 +368,19 @@ class _DashboardHomeState extends State<DashboardHome> {
                             );
                           },
                           child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Color.fromARGB(255, 241, 241, 241)
+                                      .withOpacity(0.8),
+                                  spreadRadius: 5,
+                                  blurRadius: 7,
+                                  offset: Offset(0, 3),
+                                ),
+                              ],
+                            ),
                             margin: EdgeInsets.only(
                                 bottom: 20, left: 15, right: 15),
                             height: 110,
@@ -434,6 +473,19 @@ class _DashboardHomeState extends State<DashboardHome> {
                             );
                           },
                           child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Color.fromARGB(255, 241, 241, 241)
+                                      .withOpacity(0.8),
+                                  spreadRadius: 5,
+                                  blurRadius: 7,
+                                  offset: Offset(0, 3),
+                                ),
+                              ],
+                            ),
                             margin: EdgeInsets.only(
                                 bottom: 20, left: 15, right: 15),
                             height: 110,
