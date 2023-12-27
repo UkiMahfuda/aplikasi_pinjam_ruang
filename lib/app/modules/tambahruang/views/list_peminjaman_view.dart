@@ -46,10 +46,69 @@ class DashboardPeminjaman extends StatefulWidget {
 class _DashboardPeminjamanState extends State<DashboardPeminjaman> {
   int _selectedIndex = 0;
   final cAuth = Get.find<AuthController>();
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Colors.white,
+      endDrawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: CircleAvatar(
+                radius: 12.5,
+                backgroundImage: NetworkImage(
+                  "https://i.ibb.co/YDY6gWG/profile.jpg",
+                ),
+              ),
+            ),
+            Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  ElevatedButton(
+                    onPressed: () => cAuth.logout(),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 12.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.logout,
+                            size: 20.0,
+                            color: Colors.black,
+                          ),
+                          SizedBox(width: 8.0),
+                          Text(
+                            'Logout',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -219,11 +278,13 @@ class _DashboardPeminjamanState extends State<DashboardPeminjaman> {
               },
             ),
             IconButton(
-              icon: Icon(Icons.logout),
+              icon: Icon(Icons.account_circle),
               color: _selectedIndex == 3
                   ? Colors.black
                   : Color.fromRGBO(152, 155, 161, 1),
-              onPressed: () => cAuth.logout(),
+              onPressed: () {
+                _scaffoldKey.currentState?.openEndDrawer();
+              },
             ),
           ],
         ),
