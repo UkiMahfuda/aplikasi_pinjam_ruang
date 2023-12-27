@@ -8,6 +8,7 @@ import 'package:flutter_pinjam_ruang/app/modules/tambahruang/views/tambahruang_v
 import 'package:get/get.dart';
 import '../../auth/controllers/auth_controller.dart';
 import '../../daftarruang/views/daftarruang_view.dart';
+import 'update_peminjaman_view.dart';
 
 class ImageRandom {
   static String getRandomImage() {
@@ -331,15 +332,26 @@ class _DashboardPeminjamanState extends State<DashboardPeminjaman> {
   }
 
   void showOption(id) async {
+    final TambahRuangController controller = Get.put(TambahRuangController());
+
     var result = await Get.dialog(
       SimpleDialog(
         children: [
           ListTile(
-            onTap: () {},
+            onTap: () {
+              Get.back();
+              Get.to(
+                UpdatePeminjamanView(),
+                arguments: id,
+              );
+            },
             title: Text('Update'),
           ),
           ListTile(
-            onTap: () {},
+            onTap: () {
+              Get.back();
+              controller.delete(id);
+            },
             title: Text('Hapus'),
           ),
           ListTile(
@@ -352,19 +364,3 @@ class _DashboardPeminjamanState extends State<DashboardPeminjaman> {
     );
   }
 }
-// onTap: () {
-                            //   Navigator.pushNamed(
-                            //     context,
-                            //     Routes.DESKRIPSIRUANG,
-                            //     arguments: {
-                            //       'id': listAllDocs[index].id,
-                            //       'nama': listAllDocs[index]["nama"],
-                            //       'npm': listAllDocs[index]["npm"],
-                            //       'nomor': listAllDocs[index]["nomor"],
-                            //       'namaruang': listAllDocs[index]["namaruang"],
-                            //       'kegiatan': listAllDocs[index]["kegiatan"],
-                            //       'tglpinjam': listAllDocs[index]["tglpinjam"],
-                            //       'tglkembali': listAllDocs[index]["tglkembali"],
-                            //     },
-                            //   );
-                            // },
