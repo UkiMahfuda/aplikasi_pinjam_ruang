@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pinjam_ruang/app/routes/app_pages.dart';
 import 'package:get/get.dart';
@@ -51,6 +52,8 @@ class _DashboardRuangState extends State<DashboardRuang> {
 
   @override
   Widget build(BuildContext context) {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? user = auth.currentUser;
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: Colors.white,
@@ -60,53 +63,78 @@ class _DashboardRuangState extends State<DashboardRuang> {
           children: [
             DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.blue,
+                color: Colors.cyan,
               ),
-              child: CircleAvatar(
-                radius: 12.5,
-                backgroundImage: NetworkImage(
-                  "https://i.ibb.co/YDY6gWG/profile.jpg",
-                ),
-              ),
-            ),
-            Container(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  ElevatedButton(
-                    onPressed: () => cAuth.logout(),
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
+                  Container(
+                    width: 100.0,
+                    height: 100.0,
+                    child: ClipOval(
+                      child: Image(
+                        image: NetworkImage(
+                          "https://i.ibb.co/YDY6gWG/profile.jpg",
+                        ),
+                        fit: BoxFit.cover,
                       ),
                     ),
-                    child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 12.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.logout,
-                            size: 20.0,
-                            color: Colors.black,
-                          ),
-                          SizedBox(width: 8.0),
-                          Text(
-                            'Logout',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    user?.email ?? '',
+                    style: TextStyle(fontSize: 16),
+                    textAlign: TextAlign.start,
                   ),
                 ],
               ),
             ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  margin: EdgeInsets.only(top: 20, right: 20, left: 20),
+                  child: Column(
+                    children: [
+                      ElevatedButton(
+                        onPressed: () => cAuth.logout(),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                        child: Container(
+                          padding: EdgeInsets.symmetric(vertical: 12.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.logout,
+                                size: 20.0,
+                                color: Colors.black,
+                              ),
+                              SizedBox(width: 8.0),
+                              Text(
+                                'Logout',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            )
           ],
         ),
       ),

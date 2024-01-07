@@ -17,6 +17,7 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   final CAuth = Get.put(AuthController(), permanent: true);
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<User?>(
@@ -25,10 +26,7 @@ class MyApp extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.active) {
           return GetMaterialApp(
             title: "Pinjam Ruang | UTI",
-            initialRoute:
-                snapshot.data != null && snapshot.data!.emailVerified == true
-                    ? Routes.HOME
-                    : Routes.LOGIN,
+            initialRoute: Routes.HOME,
             getPages: AppPages.routes,
           );
         }
