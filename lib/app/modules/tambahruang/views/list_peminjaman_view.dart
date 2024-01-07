@@ -45,6 +45,7 @@ class DashboardPeminjaman extends StatefulWidget {
 }
 
 class _DashboardPeminjamanState extends State<DashboardPeminjaman> {
+  String searchKeyword = '';
   int _selectedIndex = 0;
   final cAuth = Get.find<AuthController>();
 
@@ -181,8 +182,14 @@ class _DashboardPeminjamanState extends State<DashboardPeminjaman> {
                 ),
                 Expanded(
                   child: TextField(
+                    onChanged: (value) {
+                      // print('Search Keyword: $value');
+                      setState(() {
+                        searchKeyword = value;
+                      });
+                    },
                     decoration: InputDecoration(
-                      hintText: 'Cari List Peminjaman',
+                      hintText: 'Cari Nama List Peminjaman',
                       border: InputBorder.none,
                     ),
                   ),
@@ -194,68 +201,84 @@ class _DashboardPeminjamanState extends State<DashboardPeminjaman> {
             stream: Get.put(TambahRuangController()).streamData(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.active) {
-                // mengambil data
                 var listAllDocs = snapshot.data?.docs ?? [];
-                return listAllDocs.length > 0
+                var filteredList = listAllDocs.where((doc) {
+                  String listName =
+                      (doc.data() as Map<String, dynamic>)["nama"];
+                  // print('List Name: $listName, Search Keyword: $searchKeyword');
+                  return listName
+                      .trim()
+                      .toLowerCase()
+                      .contains(searchKeyword.trim().toLowerCase());
+                }).toList();
+
+                return filteredList.length > 0
                     ? Expanded(
-                        child: ListView.builder(
-                          itemCount: listAllDocs.length,
-                          itemBuilder: (context, index) => GestureDetector(
-                            onTap: () =>
-                                showDetailModal(context, listAllDocs[index]),
-                            child: Container(
-                              margin: EdgeInsets.only(
-                                left: 25,
-                                right: 25,
-                              ),
-                              child: Container(
-                                margin: EdgeInsets.only(bottom: 10),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(20),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Color.fromARGB(255, 241, 241, 241)
-                                          .withOpacity(0.8),
-                                      spreadRadius: 5,
-                                      blurRadius: 7,
-                                      offset: Offset(0, 3),
+                        child: ListView(
+                          children: List.generate(
+                            filteredList.length,
+                            (index) {
+                              var dataList = filteredList[index].data()
+                                  as Map<String, dynamic>;
+                              return GestureDetector(
+                                onTap: () => showDetailModal(
+                                    context, filteredList[index]),
+                                child: Container(
+                                  margin: EdgeInsets.only(
+                                    left: 25,
+                                    right: 25,
+                                  ),
+                                  child: Container(
+                                    margin: EdgeInsets.only(bottom: 10),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(20),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color:
+                                              Color.fromARGB(255, 241, 241, 241)
+                                                  .withOpacity(0.8),
+                                          spreadRadius: 5,
+                                          blurRadius: 7,
+                                          offset: Offset(0, 3),
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
-                                child: ListTile(
-                                  leading: CircleAvatar(
-                                    child: Text('${index + 1}'),
-                                    backgroundColor:
-                                        Color.fromARGB(255, 248, 248, 248),
-                                  ),
-                                  title: Text(
-                                    "${(listAllDocs[index].data() as Map<String, dynamic>)["nama"]}",
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w600,
+                                    child: ListTile(
+                                      leading: CircleAvatar(
+                                        child: Text('${index + 1}'),
+                                        backgroundColor:
+                                            Color.fromARGB(255, 248, 248, 248),
+                                      ),
+                                      title: Text(
+                                        "${dataList["nama"]}",
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      subtitle: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "${dataList["npm"]}",
+                                          ),
+                                          Text(
+                                            "${dataList["namaruang"]}",
+                                          ),
+                                        ],
+                                      ),
+                                      trailing: IconButton(
+                                        onPressed: () =>
+                                            showOption(filteredList[index].id),
+                                        icon: Icon(Icons.more_vert),
+                                      ),
                                     ),
                                   ),
-                                  subtitle: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "NPM : ${(listAllDocs[index].data() as Map<String, dynamic>)["npm"]}",
-                                      ),
-                                      Text(
-                                        "Ruangan : ${(listAllDocs[index].data() as Map<String, dynamic>)["namaruang"]}",
-                                      ),
-                                    ],
-                                  ),
-                                  trailing: IconButton(
-                                    onPressed: () =>
-                                        showOption(listAllDocs[index].id),
-                                    icon: Icon(Icons.more_vert),
-                                  ),
                                 ),
-                              ),
-                            ),
+                              );
+                            },
                           ),
                         ),
                       )

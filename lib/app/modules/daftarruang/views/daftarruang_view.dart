@@ -45,6 +45,7 @@ class DashboardRuang extends StatefulWidget {
 }
 
 class _DashboardRuangState extends State<DashboardRuang> {
+  String searchKeyword = '';
   int _selectedIndex = 0;
   final cAuth = Get.find<AuthController>();
   String selectedGedung = 'Gedung A';
@@ -182,6 +183,12 @@ class _DashboardRuangState extends State<DashboardRuang> {
                 ),
                 Expanded(
                   child: TextField(
+                    onChanged: (value) {
+                      setState(() {
+                        // print('Search Keyword: $value');
+                        searchKeyword = value;
+                      });
+                    },
                     decoration: InputDecoration(
                       hintText: 'Cari Ruangan',
                       border: InputBorder.none,
@@ -302,18 +309,30 @@ class _DashboardRuangState extends State<DashboardRuang> {
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.active) {
                       var listAllDocs = snapshot.data?.docs ?? [];
-                      return listAllDocs.length > 0
+
+                      var filteredList = listAllDocs.where((doc) {
+                        String roomName =
+                            (doc.data() as Map<String, dynamic>)["namaruangan"];
+
+                        // print(
+                        //     'List Name: $roomName, Search Keyword: $searchKeyword');
+                        return roomName
+                            .toLowerCase()
+                            .contains(searchKeyword.toLowerCase());
+                      }).toList();
+
+                      return filteredList.length > 0
                           ? Container(
                               margin: EdgeInsets.only(top: 20),
                               child: Container(
                                   child: Column(
                                 children: List.generate(
-                                    (listAllDocs.length / 2).ceil(),
+                                    (filteredList.length / 2).ceil(),
                                     (rowIndex) {
                                   int startIndex = rowIndex * 2;
                                   int endIndex = (rowIndex + 1) * 2;
-                                  if (endIndex > listAllDocs.length) {
-                                    endIndex = listAllDocs.length;
+                                  if (endIndex > filteredList.length) {
+                                    endIndex = filteredList.length;
                                   }
 
                                   return Row(
@@ -322,6 +341,9 @@ class _DashboardRuangState extends State<DashboardRuang> {
                                     children: List.generate(
                                         endIndex - startIndex, (colIndex) {
                                       int index = startIndex + colIndex;
+                                      var doc = filteredList[index];
+                                      var roomData =
+                                          doc.data() as Map<String, dynamic>;
                                       return GestureDetector(
                                         onTap: () {
                                           Navigator.pushNamed(
@@ -388,7 +410,7 @@ class _DashboardRuangState extends State<DashboardRuang> {
                                                     height: 10,
                                                   ),
                                                   Text(
-                                                    "${(listAllDocs[index].data() as Map<String, dynamic>)["namaruangan"]}",
+                                                    "${roomData["namaruangan"]}", // Changed
                                                     style: TextStyle(
                                                       fontSize: 16,
                                                       fontWeight:
@@ -399,13 +421,13 @@ class _DashboardRuangState extends State<DashboardRuang> {
                                                     height: 10,
                                                   ),
                                                   Text(
-                                                    "${(listAllDocs[index].data() as Map<String, dynamic>)["gedung"]}",
+                                                    "${roomData["gedung"]}", // Changed
                                                   ),
                                                   SizedBox(
                                                     height: 5,
                                                   ),
                                                   Text(
-                                                    "Kapasitas ${(listAllDocs[index].data() as Map<String, dynamic>)["kapasitas"]} Kursi",
+                                                    "Kapasitas ${roomData["kapasitas"]} Kursi", // Changed
                                                   ),
                                                   SizedBox(
                                                     height: 5,
