@@ -531,8 +531,12 @@ class _DashboardRuangState extends State<DashboardRuang> {
             MaterialPageRoute(builder: (context) => TambahruangView()),
           );
         },
-        child: Icon(Icons.add),
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
         backgroundColor: Colors.black,
+        shape: CircleBorder(),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
