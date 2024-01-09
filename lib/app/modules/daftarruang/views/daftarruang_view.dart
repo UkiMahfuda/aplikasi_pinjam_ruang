@@ -221,7 +221,7 @@ class _DashboardRuangState extends State<DashboardRuang> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20.0),
                             ),
-                            fixedSize: Size(100, 35),
+                            fixedSize: Size(110, 35),
                           ),
                           child: Text('Ged A',
                               style: TextStyle(
@@ -244,7 +244,7 @@ class _DashboardRuangState extends State<DashboardRuang> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20.0),
                             ),
-                            fixedSize: Size(100, 35),
+                            fixedSize: Size(110, 35),
                           ),
                           child: Text('Ged GSG',
                               style: TextStyle(
@@ -267,7 +267,7 @@ class _DashboardRuangState extends State<DashboardRuang> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20.0),
                             ),
-                            fixedSize: Size(100, 35),
+                            fixedSize: Size(110, 35),
                           ),
                           child: Text('Ged ICT',
                               style: TextStyle(
@@ -290,7 +290,7 @@ class _DashboardRuangState extends State<DashboardRuang> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20.0),
                             ),
-                            fixedSize: Size(100, 35),
+                            fixedSize: Size(110, 35),
                           ),
                           child: Text('Ged B',
                               style: TextStyle(
@@ -531,8 +531,12 @@ class _DashboardRuangState extends State<DashboardRuang> {
             MaterialPageRoute(builder: (context) => TambahruangView()),
           );
         },
-        child: Icon(Icons.add),
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
         backgroundColor: Colors.black,
+        shape: CircleBorder(),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
