@@ -1,16 +1,20 @@
-# flutter_pinjam_ruang
+# RoomBooking's Apps
 
-A new Flutter project.
+RoomBooking's is an innovative solution designed to streamline the campus room reservation process. Developed using the Dart programming language and Flutter framework, this application offers an intuitive and responsive interface for users. Through integration with Firebase, RoomBooking's provides a secure and efficient platform for reserving rooms, monitoring availability, and managing campus event schedules. With advanced features such as real-time notifications and booking history, RoomBooking's enhances the user experience in organizing activities within the campus environment.
 
-## Getting Started
+## Preview
+<img src="https://i.ibb.co/5Gd3LFY/Reserve-Room-Apps-1.png" style="max-width:100%">
 
-This project is a starting point for a Flutter application.
+## Tech Stack
+- Flutter
+- Dart
+- Android Studio
+- Firebase
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Features
+- Authentication
+- Login and Register
+- Borrow a Room
+- List of Loan's
+- etc
+---
