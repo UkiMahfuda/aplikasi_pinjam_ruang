@@ -47,29 +47,29 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBq0WfmX1Ejo18K4PalIltqKbetky5d9Yg',
-    appId: '1:1080617629600:web:aa7acb9477cb35871556c5',
-    messagingSenderId: '1080617629600',
-    projectId: 'flutter-pinjam-ruang',
-    authDomain: 'flutter-pinjam-ruang.firebaseapp.com',
-    storageBucket: 'flutter-pinjam-ruang.appspot.com',
-    measurementId: 'G-49NMK55WHR',
+    apiKey: 'AIzaSyBkBG-Hz_wYJrHHWx3YyVE9FWZA5rdbuCk',
+    appId: '1:835267182975:web:c7849d402c4a764ab49a4a',
+    messagingSenderId: '835267182975',
+    projectId: 'flutter-pinjam-ruang-38271',
+    authDomain: 'flutter-pinjam-ruang-38271.firebaseapp.com',
+    storageBucket: 'flutter-pinjam-ruang-38271.appspot.com',
+    measurementId: 'G-DVHVE0BKLD',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBQk391ARMAofymW7W5RUUy8CFw-5z8HyM',
-    appId: '1:1080617629600:android:155d6d02d04d6a7e1556c5',
-    messagingSenderId: '1080617629600',
-    projectId: 'flutter-pinjam-ruang',
-    storageBucket: 'flutter-pinjam-ruang.appspot.com',
+    apiKey: 'AIzaSyD4A3gsg2lZySoaenvdp1UVdcV-SSy5MXk',
+    appId: '1:835267182975:android:8009119491c4bf88b49a4a',
+    messagingSenderId: '835267182975',
+    projectId: 'flutter-pinjam-ruang-38271',
+    storageBucket: 'flutter-pinjam-ruang-38271.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBWsKYlrPZtIWyWIwckgWGE4xFbwiLeU3Q',
-    appId: '1:1080617629600:ios:40c212621e56ef831556c5',
-    messagingSenderId: '1080617629600',
-    projectId: 'flutter-pinjam-ruang',
-    storageBucket: 'flutter-pinjam-ruang.appspot.com',
+    apiKey: 'AIzaSyAUbBbqPiu2MlYvZCUt7CQU_iR7LnmcTqg',
+    appId: '1:835267182975:ios:58f79b5d470a3728b49a4a',
+    messagingSenderId: '835267182975',
+    projectId: 'flutter-pinjam-ruang-38271',
+    storageBucket: 'flutter-pinjam-ruang-38271.appspot.com',
     iosBundleId: 'com.teknokrat.flutterPinjamRuang',
   );
 }

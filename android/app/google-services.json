@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "1080617629600",
-    "project_id": "flutter-pinjam-ruang",
-    "storage_bucket": "flutter-pinjam-ruang.appspot.com"
+    "project_number": "835267182975",
+    "project_id": "flutter-pinjam-ruang-38271",
+    "storage_bucket": "flutter-pinjam-ruang-38271.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1080617629600:android:155d6d02d04d6a7e1556c5",
+        "mobilesdk_app_id": "1:835267182975:android:8009119491c4bf88b49a4a",
         "android_client_info": {
           "package_name": "com.teknokrat.flutter_pinjam_ruang"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBQk391ARMAofymW7W5RUUy8CFw-5z8HyM"
+          "current_key": "AIzaSyD4A3gsg2lZySoaenvdp1UVdcV-SSy5MXk"
         }
       ],
       "services": {

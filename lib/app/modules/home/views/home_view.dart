@@ -429,7 +429,7 @@ class _DashboardHomeState extends State<DashboardHome> {
                 ),
                 StreamBuilder<QuerySnapshot>(
                   stream: Get.put(DaftarruangController())
-                      .streamDataByNamaRuang('Lab 1 ICT'),
+                      .streamDataByNamaRuang('Lab 1 ICT '),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.active) {
                       var listAllDocs = snapshot.data?.docs ?? [];
