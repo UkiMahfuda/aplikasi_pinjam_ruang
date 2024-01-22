@@ -44,11 +44,10 @@ class AuthController extends GetxController {
         //untuk routing
         Get.offAllNamed(Routes.HOME);
       } else {
-        // Get.defaultDialog(
-        //   title: "Verifikasi email",
-        //   middleText: "Harap verifikasi email terlebih dahulu",
-        // );
-        Get.offAllNamed(Routes.HOME);
+        Get.defaultDialog(
+          title: "Verifikasi email",
+          middleText: "Harap verifikasi email terlebih dahulu",
+        );
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
